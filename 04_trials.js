@@ -113,7 +113,7 @@ let raw_trial_info = [
 	    focused: "Only | some | of | the | leather | couches | had | been | sold.",
 	},
 	continuation: {
-	    complement: "The | rest | were | going | to | be | stored | in | the | ware- | house | until | the | following | season.",
+	    complement: "The | rest | were | going | to | be | stored | in | the | warehouse | until | the | following | season.",
 	    cancelation: "In | fact, | they | all | had | since | they | were | stylish | and | cheap.",
 	},
     },
@@ -161,7 +161,7 @@ let raw_trial_info = [
     },
     {
 	context: {
-	    full: "While | working | in | the | veterinary | clinic, | I | closely | exam- | ined | the | mouth | of | large | bulldog.",
+	    full: "While | working | in | the | veterinary | clinic, | I | closely | examined | the | mouth | of | large | bulldog.",
 	    partial: "While | working | in | the | veterinary | clinic, | I | caught | a | glimpse | of | a | large | bulldog.",
 	},
 	trigger: {
