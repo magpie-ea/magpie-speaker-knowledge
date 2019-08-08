@@ -351,20 +351,6 @@ let raw_trial_info = [
 // 24 total vignettes
 // 6 lists
 
-
-// A = full, scalar + complement
-// A = {context: "full", trigger: "scalar", continuation: "complement"}
-// B = full, scalar + cancelation
-// B = {context: "full", trigger: "scalar", continuation: "cancelation"}
-// C = full, focused + complement
-// C = {context: "full", trigger: "focused", continuation: "complement"}
-// D = partial, scalar + complement
-// D = {context: "partial", trigger: "scalar", continuation: "complement"}
-// E = partial, scalar + cancelation
-// E = {context: "partial", trigger: "scalar", continuation: "cancelation"}
-// F = partial, focused + complement
-// F = {context: "full", trigger: "focused", continuation: "complement"}
-
 const latin_square_lists = [
     [
 	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
@@ -413,8 +399,6 @@ const latin_square_lists = [
 	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"}
     ]
 ]
-
-
 
 // create the list of trials for a participant by randomly choosing 4 lists (each consisting of 6 trial types) and filling them in with the content
 
