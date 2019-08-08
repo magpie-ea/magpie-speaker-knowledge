@@ -14,7 +14,6 @@ let raw_trial_info = [
 	},
 	question: "Comprehension question",
     },
-
     {
 	context: {
 	    full: "Before | the | hurricane | landed, | I | checked | every | house | in | town.",
@@ -29,7 +28,6 @@ let raw_trial_info = [
 	    cancelation: "In | fact, | they | all | did | and, | as | a | result, | they | survived | the | storm.",
 	},
     },
-
     {
 	context: {
 	    full: "This | morning, | I | took | attendance | at | an | important | meeting | with | the | manager.",
@@ -44,7 +42,6 @@ let raw_trial_info = [
 	    cancelation: "In | fact, | they | all | were | in | order | to | communicate | how | budget | cutbacks | were | crippling | their | division.",
 	},
     },
-
     {
 	context: {
 	    full: "I | was | the | chief | medic | overseeing | the | bus | accident | on | the | side | of | the | highway.",
@@ -88,7 +85,6 @@ let raw_trial_info = [
 	    cancelation: "In | fact, | they | all | were | and | the | virus | nearly | destroyed | the | whole | system.",
 	},
     },
-
     {
 	context: {
 	    full: "Earlier | today, | I | was | leading | a | small | group | of | tourists | around | the | sights | downtown.",
