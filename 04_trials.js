@@ -95,8 +95,8 @@ const raw_trial_info = [
 	    partial: "Earlier | today, | I | passed | by | a | group | of | tourists | looking | at | sights | downtown.",
 	},
 	trigger: {
-	    scalar: "Some | of | tourists | got | soaked | by | the | rain | storm.",
-	    focused: "Only | some | of | tourists | got | soaked | by | the | rain | storm.",
+	    scalar: "Some | of | the | tourists | got | soaked | by | the | rain | storm.",
+	    focused: "Only | some | of | the | tourists | got | soaked | by | the | rain | storm.",
 	},
 	continuation: {
 	    complement: "The | rest | were | dry | because | they | had | remembered | their | umbrellas.",
