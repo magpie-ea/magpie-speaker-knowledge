@@ -51,7 +51,7 @@ let raw_trial_info = [
 	    partial: "I | stopped | to | see | if | I | could | help | with | the | bus | accident | on | the | side | of | the | highway.",
 	},
 	trigger: {
-	    scalar: "Some | Some | of | the | passengers | were | still | alive.",
+	    scalar: "Some | of | the | passengers | were | still | alive.",
 	    focused: "Only | some | of | the | passengers | were | still | alive.",
 	},
 	continuation: {
