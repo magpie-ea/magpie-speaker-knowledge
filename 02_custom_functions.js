@@ -28,10 +28,19 @@ const generateID = function(len) {
     return Array.from(arr, this.dec2hex).join("");
 };
 // Declare your helper functions here
+const create_trial = function(trial, args) {
+    return {
+	sentence: trial.context[args.context_type].concat(" | ", trial.trigger[args.trigger_type],
+						     " | ", trial.continuation[args.continuation_type]),
+	question: trial.question,
+	option1: "Yes",
+	option2: "No"
+    }
+}
 
 
 
-/* Hooks  
+/* Hooks
 *
 *
 */

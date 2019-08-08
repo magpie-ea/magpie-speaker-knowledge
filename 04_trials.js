@@ -1,6 +1,3 @@
-// In this file you can specify the trial data for your experiment
-
-
 const raw_trial_info = [
     {
 	context: {
@@ -14,7 +11,8 @@ const raw_trial_info = [
 	continuation: {
 	    complement: "The | rest | were | real, | but | the | company | is | still | planning | to | sue.",
 	    cancelation: "In | fact, | they | all | were, | so | the | company | is | planning | to | sue.",
-	}
+	},
+	question: "Comprehension question",
     },
 
     {
@@ -23,19 +21,19 @@ const raw_trial_info = [
 	    partial: "Before | the | hurricane | landed, | I | volunteered | to | help | out | in | town.",
 	},
 	trigger: {
-	    scalar:" | Some | of | the | residents | had | evacuated.",
-	    focused: " | Only | some | of | the | residents | had | evacuated.",
+	    scalar:"Some | of | the | residents | had | evacuated.",
+	    focused: "Only | some | of | the | residents | had | evacuated.",
 	},
 	continuation: {
-	    complement: " | The | rest | stayed | at | home | and | foolishly | risked | their | lives.",
-	    cancelation: " | In | fact, | they | all | did | and, | as | a | result, | they | survived | the | storm.",
+	    complement: "The | rest | stayed | at | home | and | foolishly | risked | their | lives.",
+	    cancelation: "In | fact, | they | all | did | and, | as | a | result, | they | survived | the | storm.",
 	},
     },
 
     {
 	context: {
 	    full: "This | morning, | I | took | attendance | at | an | important | meeting | with | the | manager.",
-	    partial: "This | morning, | I | heard | about | at | an | important | meeting | with | the | manager.",
+	    partial: "This | morning, | I | heard | about | an | important | meeting | with | the | manager.",
 	},
 	trigger: {
 	    scalar: "Some | of | the | company’s | accountants | were | there.",
@@ -54,7 +52,7 @@ const raw_trial_info = [
 	},
 	trigger: {
 	    scalar: "Some | Some | of | the | passengers | were | still | alive.",
-	    focused: " | Only | some | of | the | passengers | were | still | alive.",
+	    focused: "Only | some | of | the | passengers | were | still | alive.",
 	},
 	continuation: {
 	    complement: "The | others | were | killed | on | impact | and | there | was | no | opportunity | to | save | them.",
@@ -67,8 +65,8 @@ const raw_trial_info = [
 	    partial: "At | my | client’s | request, | I | skimmed | the | investment | report.",
 	},
 	trigger: {
-	    scalar: "Some | of | the | real_estate | investments | lost | money.",
-	    focused: "Only | some | of | the | real_estate | investments | lost | money.",
+	    scalar: "Some | of | the | real estate | investments | lost | money.",
+	    focused: "Only | some | of | the | real estate | investments | lost | money.",
 	},
 	continuation: {
 	    complement: "The | others | were | successful | in | spite | of | the | recent | economic | downturn.",
@@ -143,7 +141,7 @@ const raw_trial_info = [
 	    focused: "Only | some | of | my | favorite | rides | were | still | running.",
 	},
 	continuation: {
-	    complement: "The | rest | were | shut_down | since | they | were | no | longer | popular.",
+	    complement: "The | rest | were | shut down | since | they | were | no | longer | popular.",
 	    cancelation: "In | fact, | they | all | were | since | they | were | still | popular.",
 	},
     },
@@ -303,8 +301,8 @@ const raw_trial_info = [
     },
     {
 	context: {
-	    full: "I | am | a | huge | fan | of | my | old | high_school | football | team | and | attended | every | game | last | season.",
-	    partial: "I | ran | into | a | friend | who | started | telling | how | my | old | high_school | football | team | did | last | season.",
+	    full: "I | am | a | huge | fan | of | my | old | high school | football | team | and | attended | every | game | last | season.",
+	    partial: "I | ran | into | a | friend | who | started | telling | how | my | old | high school | football | team | did | last | season.",
 	},
 	trigger: {
 	    scalar: "Some | of | their | losses | were | close.",
@@ -348,6 +346,79 @@ const raw_trial_info = [
 
 
 
-let trial_info = [];
-trial_info[0] = {sentence: raw_trial_info[0].context.full.concat(" | ", raw_trial_info[0].trigger.scalar,
-								 " | ", raw_trial_info[0].continuation.cancelation)}
+// 2 knowledge conditions: full vs partial
+// 3 continuation conditions: scalar + complement, scalar + cancelation, focused + complement
+// 24 total vignettes
+// 6 lists
+
+
+// A = full, scalar + complement
+// A = {context: "full", trigger: "scalar", continuation: "complement"}
+// B = full, scalar + cancelation
+// B = {context: "full", trigger: "scalar", continuation: "cancelation"}
+// C = full, focused + complement
+// C = {context: "full", trigger: "focused", continuation: "complement"}
+// D = partial, scalar + complement
+// D = {context: "partial", trigger: "scalar", continuation: "complement"}
+// E = partial, scalar + cancelation
+// E = {context: "partial", trigger: "scalar", continuation: "cancelation"}
+// F = partial, focused + complement
+// F = {context: "full", trigger: "focused", continuation: "complement"}
+
+const latin_square_lists = [
+    [
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"},
+	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"},
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"},
+	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"}
+    ],
+    [
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"},
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
+	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"},
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"},
+	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"},
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"}
+    ],
+    [
+	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"},
+	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"},
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"},
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"}],
+    [
+	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"},
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"},
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"},
+	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"},
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"}
+    ],
+    [
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
+	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"},
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
+	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"},
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"},
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"}],
+    [
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"},
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"},
+	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"},
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
+	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"}
+    ]
+]
+
+
+
+const trial_list = _.flatten(_.sampleSize(latin_square_lists, 4))
+console.log(trial_list)
+
+const trial_info = trial_list.map(function(e) {
+    trial = create_trial(raw_trial_info[_.indexOf(trial_list, e)], e)
+    return trial})
