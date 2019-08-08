@@ -157,7 +157,7 @@ let raw_trial_info = [
     },
     {
 	context: {
-	    full: "While | working | in | the | veterinary | clinic, | I | closely | examined | the | mouth | of | large | bulldog.",
+	    full: "While | working | in | the | veterinary | clinic, | I | closely | examined | the | mouth | of | a | large | bulldog.",
 	    partial: "While | working | in | the | veterinary | clinic, | I | caught | a | glimpse | of | a | large | bulldog.",
 	},
 	trigger: {
