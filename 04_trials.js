@@ -428,13 +428,13 @@ const trial_list = _.flatten(_.sampleSize(latin_square_lists, 4))
 
 const create_trial = function(trial, args) {
     return {
+	knowledge: args.context_type,
+	continuation: args.trigger_type.concat("-", args.continuation_type)
 	sentence: trial.context[args.context_type].concat(" | ", trial.trigger[args.trigger_type],
 						     " | ", trial.continuation[args.continuation_type]),
 	question: trial.question,
 	option1: "Yes",
 	option2: "No",
-	knowledge: args.context_type,
-	continuation: args.trigger_type.concat("-", args.continuation_type)
     }
 }
 
