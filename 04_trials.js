@@ -1,4 +1,4 @@
-const raw_trial_info = [
+let raw_trial_info = [
     {
 	context: {
 	    full: "I | carefully | inspected | the | new | shipment | of | jewelry.",
@@ -416,8 +416,21 @@ const latin_square_lists = [
 
 
 
+// create the list of trials for a participant by randomly choosing 4 lists (each consisting of 6 trial types) and filling them in with the content
+
+raw_trial_info = _.shuffle(raw_trial_info)
+
 const trial_list = _.flatten(_.sampleSize(latin_square_lists, 4))
-console.log(trial_list)
+
+const create_trial = function(trial, args) {
+    return {
+	sentence: trial.context[args.context_type].concat(" | ", trial.trigger[args.trigger_type],
+						     " | ", trial.continuation[args.continuation_type]),
+	question: trial.question,
+	option1: "Yes",
+	option2: "No"
+    }
+}
 
 const trial_info = trial_list.map(function(e) {
     trial = create_trial(raw_trial_info[_.indexOf(trial_list, e)], e)
