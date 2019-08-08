@@ -351,54 +351,74 @@ let raw_trial_info = [
 // 24 total vignettes
 // 6 lists
 
+// latin square:
+// C E D B A F
+// D C A E F B
+// A B F D E C
+// E D C F B A
+// F A B C D E
+// B F E A C D
+
+// A = full, scalar + complement
+// B = full, scalar + cancelation
+// C = full, focused + complement
+// D = partial, scalar + complement
+// E = partial, scalar + cancelation
+// F = partial, focus + complement
+
 const latin_square_lists = [
     [
-	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
-	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"},
-	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"},
-	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
-	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"},
-	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"}
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"}, // C
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"}, // E
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"}, // D
+	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"}, // B
+	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"}, // A
+	{context_type: "partial", trigger_type: "focused", continuation_type: "complement"} // F
     ],
     [
-	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"},
-	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
-	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"},
-	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"},
-	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"},
-	{context_type: "full", trigger_type: "focused", continuation_type: "complement"}
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"}, // D
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"}, // C
+	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"}, // A
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"}, // E
+	{context_type: "partial", trigger_type: "focused", continuation_type: "complement"}, // F
+	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"} // B
     ],
     [
-	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"},
-	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"},
-	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"},
-	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
-	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
-	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"}],
-    [
-	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"},
-	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"},
-	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
-	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"},
-	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"},
-	{context_type: "full", trigger_type: "focused", continuation_type: "complement"}
+	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"}, // A
+	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"}, // B
+	{context_type: "partial", trigger_type: "focused", continuation_type: "complement"}, // F
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"}, // D
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"}, // E
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"} // C
     ],
     [
-	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
-	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"},
-	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
-	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"},
-	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"},
-	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"}],
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"}, // E
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"}, // D
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"}, // C
+	{context_type: "partial", trigger_type: "focused", continuation_type: "complement"}, // F
+	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"}, // B
+	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"} // A
+    ],
     [
-	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"},
-	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
-	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"},
-	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"},
-	{context_type: "full", trigger_type: "focused", continuation_type: "complement"},
-	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"}
+	{context_type: "partial", trigger_type: "focused", continuation_type: "complement"}, // F
+	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"}, // A
+	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"}, // B
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"}, // C
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"}, // D
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"}, // E
+    ],
+    [
+	{context_type: "full", trigger_type: "scalar", continuation_type: "cancelation"}, // B
+	{context_type: "partial", trigger_type: "focused", continuation_type: "complement"}, // F
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "cancelation"}, // E
+	{context_type: "full", trigger_type: "scalar", continuation_type: "complement"}, // A
+	{context_type: "full", trigger_type: "focused", continuation_type: "complement"}, // C
+	{context_type: "partial", trigger_type: "scalar", continuation_type: "complement"}, // D
     ]
 ]
+
+
+
 
 // create the list of trials for a participant by randomly choosing 4 lists (each consisting of 6 trial types) and filling them in with the content
 
@@ -412,7 +432,9 @@ const create_trial = function(trial, args) {
 						     " | ", trial.continuation[args.continuation_type]),
 	question: trial.question,
 	option1: "Yes",
-	option2: "No"
+	option2: "No",
+	knowledge: args.context_type,
+	continuation: args.trigger_type.concat("-", args.continuation_type)
     }
 }
 
