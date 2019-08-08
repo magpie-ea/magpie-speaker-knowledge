@@ -308,7 +308,6 @@ let raw_trial_info = [
 	    complement: "The | others | were | blowouts | which | made | the | games | boring | to | watch.",
 	    cancelation: "In | fact, | they | all | were | which | made | the | games | stressful | to | watch.",
 	},
-
     },
     {
 	context: {
