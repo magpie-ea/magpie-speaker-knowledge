@@ -437,12 +437,15 @@ const latin_square_lists = [
 
 
 
-// create the list of trials for a participant by randomly choosing 4 lists (each consisting of 6 trial types) and filling them in with the content
+// create the list of trials for a participant by randomly choosing 4
+// lists (each consisting of 6 trial types) and filling them in with
+// the content
 
 // raw_trial_info = _.shuffle(raw_trial_info)
 
 const trial_list = _.flatten(_.sampleSize(latin_square_lists, 4))
 
+// fills in a single trial based on context_type, trigger_type and continuation_type
 const create_trial = function(trial, args) {
     return {
 	knowledge: args.context_type,
@@ -455,6 +458,7 @@ const create_trial = function(trial, args) {
     }
 }
 
+// fill in all trial templates in the list with the corresponding text from the raw_trial_info
 const trial_info = trial_list.map(function(e) {
     trial = create_trial(raw_trial_info[_.indexOf(trial_list, e)], e)
     return trial})
