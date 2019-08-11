@@ -27,6 +27,7 @@ let raw_trial_info = [
 	    complement: `The | rest | stayed | at | home | and | foolishly | risked | their | lives.`,
 	    cancelation: `In | fact, | they | all | did | and, | as | a | result, | they | survived | the | storm.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -41,6 +42,7 @@ let raw_trial_info = [
 	    complement: `The | rest | were | missing | because | they | had | to | audit | the | company’s | finances | before | the | end | of | the | quarter.`,
 	    cancelation: `In | fact, | they | all | were | in | order | to | communicate | how | budget | cutbacks | were | crippling | their | division.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -55,6 +57,7 @@ let raw_trial_info = [
 	    complement: `The | others | were | killed | on | impact | and | there | was | no | opportunity | to | save | them.`,
 	    cancelation: `In | fact, | they | all | were | and | none | were | critically | injured.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -69,7 +72,7 @@ let raw_trial_info = [
 	    complement: `The | others | were | successful | in | spite | of | the | recent | economic | downturn.`,
 	    cancelation: `In | fact, | they | all | did | because | of | the | recent | economic | downturn.`,
 	},
-
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -84,6 +87,7 @@ let raw_trial_info = [
 	    complement: `The | rest | were | clean | because | their | owners | had | been | very | cautious.`,
 	    cancelation: `In | fact, | they | all | were | and | the | virus | nearly | destroyed | the | whole | system.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -98,6 +102,7 @@ let raw_trial_info = [
 	    complement: `The | rest | were | dry | because | they | had | remembered | their | umbrellas.`,
 	    cancelation: `In | fact, | they | all | did | because | they | had | forgotten | their | umbrellas.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -112,6 +117,7 @@ let raw_trial_info = [
 	    complement: `The | rest | were | going | to | be | stored | in | the | warehouse | until | the | following | season.`,
 	    cancelation: `In | fact, | they | all | had | since | they | were | stylish | and | cheap.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -126,6 +132,7 @@ let raw_trial_info = [
 	    complement: `The | rest | were | mild | and | I | found | them | to | be | bland.`,
 	    cancelation: `In | fact, | they | all | were | but | fortunately | I | love | spicy | food.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -140,6 +147,7 @@ let raw_trial_info = [
 	    complement: `The | rest | were | shut down | since | they | were | no | longer | popular.`,
 	    cancelation: `In | fact, | they | all | were | since | they | were | still | popular.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -154,6 +162,7 @@ let raw_trial_info = [
 	    complement: `The | rest | were | safe | but | I | was | still | extremely | upset.`,
 	    cancelation: `In | fact, | they | all | were | even | though | I | had | secured | them.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -168,6 +177,7 @@ let raw_trial_info = [
 	    complement: `The | rest | were | intact | so | it | should | still | be | able | to | eat | solid | food.`,
 	    cancelation: `In | fact, | they | all | were | because | its | owners | completely | neglected | its | oral | hygiene.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -182,6 +192,7 @@ let raw_trial_info = [
 	    complement: `The | others | were | fine | so | it | would | not | cost | too | much | to | fix | it.`,
 	    cancelation: `In | fact, | they | all | were | so | the | cost | to | repair | it | would | be | enormous.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -196,6 +207,7 @@ let raw_trial_info = [
 	    complement: `The | rest | were | wrong | so | my | theory | must | be | mistaken.`,
 	    cancelation: `In | fact, | they | all | were | so | I | should | be | able | to | publish | the | results.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -210,6 +222,7 @@ let raw_trial_info = [
 	    complement: `The | rest | were | cheap | despite | my | family’s | love | for | luxurious | holidays.`,
 	    cancelation: `In | fact, | they | all | were | because | my | family | loves | luxurious | holidays.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -224,6 +237,7 @@ let raw_trial_info = [
 	    complement: `The | others | were | untouched, | but | I | was | still | concerned | and | decided | to | call | her | parents.`,
 	    cancelation: `In | fact, | they | all | were | but | I | decided | not | to | call | her | parents | because | it | was | so | hard | to | find | a | babysitter.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -238,6 +252,7 @@ let raw_trial_info = [
 	    complement: `The | others | were | fine | so | the | repairs | shouldn’t | be | too | expensive.`,
 	    cancelation: `In | fact, | they | all | were | so | they | will | require | extensive | repairs.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -252,6 +267,7 @@ let raw_trial_info = [
 	    complement: `The | others | were | straightforward | and | I | feel | like | I | learned | a | lot.`,
 	    cancelation: `In | fact, | they | all | were | but | it | received | a | positive | review | anyway.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -266,6 +282,7 @@ let raw_trial_info = [
 	    complement: `The | others | were | normal | but | I | decided | to | order | more | anyway.`,
 	    cancelation: `In | fact, | they | all | did | which | confused | me | because | we | hadn’t | used | a | lot | this | morning.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -280,6 +297,7 @@ let raw_trial_info = [
 	    complement: `The | others | were | not | invited | to | attend | because | the | teachers | didn’t | want | anyone | to | feel | left | out.`,
 	    cancelation: `In | fact, | they | all | did | because | the | teachers | didn’t | want | any | of | them | to | feel | left | out.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -294,6 +312,7 @@ let raw_trial_info = [
 	    complement: `The | others | were | labeled | appropriately | though | a | few | of | them | had | been | shelved | in | the | wrong | place.`,
 	    cancelation: `In | fact, | they | all | were | which | made | his | job | much | more | difficult.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -308,6 +327,7 @@ let raw_trial_info = [
 	    complement: `The | others | were | blowouts | which | made | the | games | boring | to | watch.`,
 	    cancelation: `In | fact, | they | all | were | which | made | the | games | stressful | to | watch.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -322,6 +342,7 @@ let raw_trial_info = [
 	    complement: `The | others | were | totally | unfamiliar | which | made | the | test | somewhat | challenging.`,
 	    cancelation: `In | fact, | they | all | did | which | made | the | test | somewhat | easier.`,
 	},
+	question: `Comprehension question`,
     },
     {
 	context: {
@@ -335,7 +356,8 @@ let raw_trial_info = [
 	continuation: {
 	    complement: `The | others | were | relatively | steady | but | my | portfolio | was | still | down | for | the | year.`,
 	    cancelation: `In | fact, | they | all | did | but | my | portfolio | was | still | down | for | the | year.`,
-	}
+	},
+	question: `Comprehension question`,
     }
 ]
 
