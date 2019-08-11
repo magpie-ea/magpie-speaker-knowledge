@@ -1,3 +1,21 @@
+const practice_trial_info = [
+    {sentence: `This | is | the | first | example | paragraph.<br/> | You | will | see | two | more | examples | for | practice.`,
+     question: "Will you see two more examples?",
+     option1: "yes",
+     option2: "no"
+    },
+        {sentence: `This | is | the | second | example | paragraph.<br/> | You | will | see | one | more | example | for | practice.`,
+     question: "Will you see two more examples?",
+     option1: "yes",
+     option2: "no"
+    },
+        {sentence: `This | is | the | third | and | final | example | paragraph.<br/> | You | will | not | see | any | more | examples | for | practice.`,
+     question: "Will you see more examples?",
+     option1: "yes",
+     option2: "no"
+    }
+]
+
 let raw_trial_info = [
     {
 	context: {
@@ -441,7 +459,7 @@ const latin_square_lists = [
 // lists (each consisting of 6 trial types) and filling them in with
 // the content
 
-// raw_trial_info = _.shuffle(raw_trial_info)
+raw_trial_info = _.shuffle(raw_trial_info)
 
 const trial_list = _.flatten(_.sampleSize(latin_square_lists, 4))
 
