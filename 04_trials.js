@@ -18,19 +18,28 @@ const practice_trial_info = [
 
 let raw_trial_info = [
     {
-	context: {
-	    full: `I | carefully | inspected | the | new | shipment | of | jewelry.`,
-	    partial: `I | helped | unload | the | new | shipment | of | jewelry.`,
-	},
-	trigger: {
-	    scalar: `Some | of | the | gold | watches | were | fakes.`,
-	    focused: `Only | some | of | the | gold | watches | were | fakes.`,
-	},
-	continuation: {
-	    complement: `The | rest | were | real, | but | the | company | is | still | planning | to | sue.`,
-	    cancelation: `In | fact, | they | all | were, | so | the | company | is | planning | to | sue.`,
-	},
-	question: `Comprehension question`,
+        ID: 1,
+	      context: {
+	          full: `I | carefully | inspected | the | new | shipment | of | jewelry.`,
+	          partial: `I | helped | unload | the | new | shipment | of | jewelry.`,
+	      },
+        context_length: {
+	          full: 8,      // number of words in full context condition
+	          partial: 8,   // number of words in partial context condition
+	      },
+	      trigger: {
+	          scalar: `Some | of | the | gold | watches | were | fakes.`,
+	          focused: `Only | some | of | the | gold | watches | were | fakes.`,
+	      },
+        trigger_length: {
+	          scalar: 7,      // number of words in scalar trigger sentence
+	          focused: 8,     // number of words in focused trigger sentence
+	      },
+	      continuation: {
+	          complement: `The | rest | were | real, | but | the | company | is | still | planning | to | sue.`,
+	          cancelation: `In | fact, | they | all | were, | so | the | company | is | planning | to | sue.`,
+	      },
+	      question: `Comprehension question`,
     },
     {
 	context: {
@@ -459,20 +468,21 @@ const latin_square_lists = [
 // lists (each consisting of 6 trial types) and filling them in with
 // the content
 
-raw_trial_info = _.shuffle(raw_trial_info)
+// raw_trial_info = _.shuffle(raw_trial_info);
 
-const trial_list = _.flatten(_.sampleSize(latin_square_lists, 4))
+const trial_list = _.flatten(_.sampleSize(latin_square_lists, 4));
 
 // fills in a single trial based on context_type, trigger_type and continuation_type
 const create_trial = function(trial, args) {
     return {
-	knowledge: args.context_type,
-	continuation: args.trigger_type.concat("-", args.continuation_type),
-	sentence: trial.context[args.context_type].concat(`<br/> | `, trial.trigger[args.trigger_type],
-						     `<br/> | `, trial.continuation[args.continuation_type]),
-	question: trial.question,
-	option1: "Yes",
-	option2: "No",
+	      knowledge: args.context_type,
+        trigger_type: args.trigger_type,
+	      continuation: args.trigger_type.concat("-", args.continuation_type),
+	      sentence: trial.context[args.context_type].concat(`<br/> | `, trial.trigger[args.trigger_type],
+	      					     `<br/> | `, trial.continuation[args.continuation_type]),
+	      question: trial.question,
+	      option1: "Yes",
+	      option2: "No",
     }
 }
 

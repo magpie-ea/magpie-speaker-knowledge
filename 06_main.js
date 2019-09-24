@@ -15,10 +15,10 @@ $("document").ready(function() {
     window.magpie_monitor = magpieInit({
         // You have to specify all views you want to use in this experiment and the order of them
         views_seq: [
-            intro,
-            instructions,
-	          // self_paced_reading_practice,
-	          begin,
+            // intro,
+            // instructions,
+	          self_paced_reading_practice,
+	          // begin,
             self_paced_reading,
             post_test,
             thanks,
