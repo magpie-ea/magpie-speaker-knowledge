@@ -125,9 +125,10 @@ const self_paced_reading_practice = magpieViews.view_generator("self_paced_readi
 
 const self_paced_reading = magpieViews.view_generator("self_paced_reading", {
   // This will use all trials specified in `data`, you can user a smaller value (for testing), but not a larger value
-  trials: trial_info.length,
+  // trials: trial_info.length,
+    trials: 2,
   // name should be identical to the variable name
-  name: 'self_paced_reading',
+    name: 'self_paced_reading',
     data: trial_info
   // you can add custom functions at different stages through a view's life cycle
   // hook: {
