@@ -40,3 +40,8 @@
 .magpie-spr-sentence .spr-word.no-line:after {
     visibility: hidden;
 }
+
+.magpie-view-stimulus-container {
+    height: auto;
+    max-height: 150px;
+}

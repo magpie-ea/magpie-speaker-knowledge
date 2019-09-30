@@ -592,6 +592,7 @@ let raw_trial_info = [
       	    cancelation: `In | fact, | they | all | did | but | my | portfolio | was | still | down | for | the | year.`,
       	},
       	question: `Comprehension question`, // Did all the stock prices go down? - no
+
     }
 ]
 

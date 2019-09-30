@@ -23,14 +23,16 @@ const intro = magpieViews.view_generator("intro", {
   trials: 1,
   name: 'intro',
   // If you use JavaScripts Template String `I am a Template String`, you can use HTML <></> and javascript ${} inside
-  text: `This is a sample introduction view.
+  text: `Thank you for taking part in this experiment.
             <br />
             <br />
-            The introduction view welcomes the participant and gives general information
-            about the experiment. You are in the <strong>${coin}</strong> group.
+            Participation in this experiment is voluntary. You may quit at any moment without negative consequences.
             <br />
             <br />
-            This is a minimal experiment with one forced choice view. It can serve as a starting point for programming your own experiment.`,
+            The data from this experiment will be used for scientific purposes only. It will be stored anonymously and may be shared with other scientists.
+            <br />
+            <br />
+            By proceeding you indicate that you have read, understood and that you agree with these terms.`,
   buttonText: 'begin the experiment'
 });
 
@@ -39,12 +41,17 @@ const instructions = magpieViews.view_generator("instructions", {
   trials: 1,
   name: 'instructions',
   title: 'General Instructions',
-  text: `This is a sample instructions view.
-            <br />
-            <br />
-            Tell your participants what they are to do here.`,
-  buttonText: 'go to trials'
+ text: `In this experiment, you will read 24 short pieces of text. After each piece of text, you will be asked a question relating to it. Please read the texts carefully and answer the question based on your intuitive understanding of the situation described. <br/><br/>
+The texts are presented in 'self-paced reading' tasks, meaning that you will only see a single word at a time, and a new word will appear when you press the spacebar.`,
+  buttonText: 'go to practice '
 });
+
+const begin = magpieViews.view_generator("begin", {
+    trials: 1,
+    name: "begin",
+    title: "Get ready",
+    text: "The practice trials are now complete. When you are ready to begin the study, click 'Begin'.",
+    buttonText: "Begin"})
 
 
 // In the post test questionnaire you can ask your participants addtional questions
@@ -102,12 +109,26 @@ const thanks = magpieViews.view_generator("thanks", {
 */
 
 
-// Here, we initialize a normal forced_choice view
+const self_paced_reading_practice = magpieViews.view_generator("self_paced_reading", {
+  // This will use all trials specified in `data`, you can user a smaller value (for testing), but not a larger value
+  trials: practice_trial_info.length,
+  // name should be identical to the variable name
+  name: 'self_paced_reading_practice',
+    data: practice_trial_info
+  // you can add custom functions at different stages through a view's life cycle
+  // hook: {
+  //     after_response_enabled: check_response
+  // }
+});
+
+
+
 const self_paced_reading = magpieViews.view_generator("self_paced_reading", {
   // This will use all trials specified in `data`, you can user a smaller value (for testing), but not a larger value
-  trials: trial_info.length,
+  // trials: trial_info.length,
+    trials: 2,
   // name should be identical to the variable name
-  name: 'self_paced_reading',
+    name: 'self_paced_reading',
     data: trial_info
   // you can add custom functions at different stages through a view's life cycle
   // hook: {
