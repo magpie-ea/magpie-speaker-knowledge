@@ -110,30 +110,23 @@ const thanks = magpieViews.view_generator("thanks", {
 
 
 const self_paced_reading_practice = magpieViews.view_generator("self_paced_reading", {
-  // This will use all trials specified in `data`, you can user a smaller value (for testing), but not a larger value
-  trials: practice_trial_info.length,
-  // name should be identical to the variable name
-  name: 'self_paced_reading_practice',
-    data: practice_trial_info
-  // you can add custom functions at different stages through a view's life cycle
-  // hook: {
-  //     after_response_enabled: check_response
-  // }
+    trials: practice_trial_info.length,
+    name: 'self_paced_reading_practice',
+    data: practice_trial_info,
+}, {
+    stimulus_container_generator: custom_self_paced_reading_stimulus,
+    handle_response_function: custom_self_paced_reading_response,
+    answer_container_generator: custom_self_paced_reading_answer
 });
 
-
-
 const self_paced_reading = magpieViews.view_generator("self_paced_reading", {
-  // This will use all trials specified in `data`, you can user a smaller value (for testing), but not a larger value
-  // trials: trial_info.length,
-    trials: 2,
-  // name should be identical to the variable name
+    trials: trial_info.length,
     name: 'self_paced_reading',
-    data: trial_info
-  // you can add custom functions at different stages through a view's life cycle
-  // hook: {
-  //     after_response_enabled: check_response
-  // }
+    data: _.shuffle(trial_info),
+}, {
+    stimulus_container_generator: custom_self_paced_reading_stimulus,
+    handle_response_function: custom_self_paced_reading_response,
+    answer_container_generator: custom_self_paced_reading_answer
 });
 
 // There are many more templates available:

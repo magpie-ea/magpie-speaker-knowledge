@@ -1,15 +1,21 @@
 const practice_trial_info = [
-    {sentence: `This | is | the | first | example | paragraph.<br/> | You | will | see | two | more | examples | for | practice.`,
+    {context: `This | is | the | first | example | paragraph.`,
+     trigger: `Each | word | will | appear | one | at | a | time.`,
+     continuation: `You | will | see | two | more | examples | for | practice`,
+     question: "Will you see two more examples?",
+     option1: "yes",
+     option2: "no",
+    },
+    {context: `This | is | the | second | example | paragraph.`,
+     trigger: `You | will | see | one | more | example | for | practice.`,
+     continuation: `The | next | will | be | the | last | example.`,
      question: "Will you see two more examples?",
      option1: "yes",
      option2: "no"
     },
-        {sentence: `This | is | the | second | example | paragraph.<br/> | You | will | see | one | more | example | for | practice.`,
-     question: "Will you see two more examples?",
-     option1: "yes",
-     option2: "no"
-    },
-        {sentence: `This | is | the | third | and | final | example | paragraph.<br/> | You | will | not | see | any | more | examples | for | practice.`,
+    {context: `This | is | the | third | example | paragraph.`,
+     trigger: `It | is | also | the | final | example.`,
+     continuation: `You | will | not | see | any | more | examples | for | practice.`,
      question: "Will you see more examples?",
      option1: "yes",
      option2: "no"
@@ -475,14 +481,15 @@ const trial_list = _.flatten(_.sampleSize(latin_square_lists, 4));
 // fills in a single trial based on context_type, trigger_type and continuation_type
 const create_trial = function(trial, args) {
     return {
-	      knowledge: args.context_type,
+	knowledge: args.context_type,
         trigger_type: args.trigger_type,
-	      continuation: args.trigger_type.concat("-", args.continuation_type),
-	      sentence: trial.context[args.context_type].concat(`<br/> | `, trial.trigger[args.trigger_type],
-	      					     `<br/> | `, trial.continuation[args.continuation_type]),
-	      question: trial.question,
-	      option1: "Yes",
-	      option2: "No",
+	continuation_type: args.trigger_type.concat("-", args.continuation_type),
+	context: trial.context[args.context_type],
+	trigger: trial.trigger[args.trigger_type],
+	continuation: trial.continuation[args.continuation_type],
+	question: trial.question,
+	option1: "Yes",
+	option2: "No",
     }
 }
 

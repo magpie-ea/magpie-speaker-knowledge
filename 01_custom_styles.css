@@ -6,42 +6,35 @@
 .magpie-spr-sentence {
     display: block;
     line-height: 40px;
-    max-width: 500px;
+    max-width: 800px;
     margin: 0 auto;
-    text-align: left;
+    text-align: center;
 }
-.magpie-spr-sentence .spr-word {
-    color: rgba(0, 0, 0, 0.87);
-    font-family: "Lato", "Noto Sans", sans-serif;
-    font-size: 17px;
-    display: inline;
-    line-height: 27px;
-    margin: 0 4px;
-    position: relative;
-}
-.magpie-spr-sentence .spr-word:after {
-    background: #333;
-    content: "";
-    display: inline-block;
-    height: 2px;
-    visibility: visible;
-    width: 100%;
+/* .magpie-spr-sentence .spr-word { */
+/*     display: inline; */
+/* } */
+/* .magpie-spr-sentence .spr-word:after { */
+/*     background: #003; */
+/*     content: ""; */
+/*     display: inline; */
+/*     height: 2px; */
+/*     visibility: visible; */
+/*     width: 100%; */
+/*     position: absolute; */
+/*     bottom: -3px; */
+/*     left: 0; */
+/* } */
+/* .magpie-spr-sentence .spr-word-hidden  { */
+/*     visibility: hidden; */
+/* } */
+/* .magpie-spr-sentence .one-line { */
+/*     margin: 0 0; */
+/* } */
+/* .magpie-spr-sentence .spr-word.no-line:after { */
+/*     visibility: hidden; */
+/* } */
 
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-}
-.magpie-spr-sentence .spr-word-hidden  {
-    visibility: hidden;
-}
-.magpie-spr-sentence .one-line {
-    margin: 0 0;
-}
-.magpie-spr-sentence .spr-word.no-line:after {
-    visibility: hidden;
-}
-
-.magpie-view-stimulus-container {
-    height: auto;
-    max-height: 150px;
-}
+/* .magpie-view-stimulus-container { */
+/*     height: auto; */
+/*     max-height: 150px; */
+/* } */
