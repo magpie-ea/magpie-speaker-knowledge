@@ -1,7 +1,7 @@
 const practice_trial_info = [
     {context: `This | is | the | first | example | paragraph.`,
      trigger: `Each | word | will | appear | one | at | a | time.`,
-     continuation: `You | will | see | two | more | examples | for | practice`,
+     continuation: `You | will | see | two | more | examples | for | practice.`,
      question: "Will you see two more examples?",
      option1: "yes",
      option2: "no",
