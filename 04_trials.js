@@ -45,7 +45,8 @@ let raw_trial_info = [
 	          complement: `The | rest | were | real, | but | the | company | is | still | planning | to | sue.`,
 	          cancelation: `In | fact, | they | all | were, | so | the | company | is | planning | to | sue.`,
 	      },
-	      question: `Comprehension question`, // Did the new shipment of jewelery contain gold watches that were fake? - yes
+	question: `Did the new shipment of jewelery contain gold watches that were fake?`,
+	correct: "yes"
     },
     {
         ID: 2,
@@ -69,7 +70,8 @@ let raw_trial_info = [
       	    complement: `The | rest | stayed | at | home | and | foolishly | risked | their | lives.`,
       	    cancelation: `In | fact, | they | all | did | and, | as | a | result, | they | survived | the | storm.`,
       	},
-      	question: `Comprehension question`, // Were all of the residents in their town when the hurricane landed? - no
+      	question: `Were all of the residents in their town when the hurricane landed?`,
+	correct: "no"
     },
     {
         ID: 3,
@@ -93,7 +95,8 @@ let raw_trial_info = [
       	    complement: `The | rest | were | missing | because | they | had | to | audit | the | company’s | finances | before | the | end | of | the | quarter.`,
       	    cancelation: `In | fact, | they | all | were | in | order | to | communicate | how | budget | cutbacks | were | crippling | their | division.`,
       	},
-      	question: `Comprehension question`, // Have any of the company's accountants shown up for an important meeting with the manager? - yes
+      	question: `Have any of the company's accountants shown up for an important meeting with the manager?`,
+	correct: "yes"
     },
     {
         ID: 4,
@@ -117,7 +120,8 @@ let raw_trial_info = [
       	    complement: `The | others | were | killed | on | impact | and | there | was | no | opportunity | to | save | them.`,
       	    cancelation: `In | fact, | they | all | were | and | none | were | critically | injured.`,
       	},
-      	question: `Comprehension question`, // Did any passenger survive the bus accident on the highway? - yes
+      	question: `Did any passenger survive the bus accident on the highway?`,
+	correct: "yes"
     },
     {
         ID: 5,
@@ -141,7 +145,8 @@ let raw_trial_info = [
       	    complement: `The | others | were | successful | in | spite | of | the | recent | economic | downturn.`,
       	    cancelation: `In | fact, | they | all | did | because | of | the | recent | economic | downturn.`,
       	},
-      	question: `Comprehension question`, // Did all real estate investments increase in value in spite an the economic downturn? - no
+      	question: `Did all real estate investments increase in value in spite an the economic downturn?`,
+	correct: "no"
     },
     {
         ID: 6,
@@ -165,7 +170,8 @@ let raw_trial_info = [
       	    complement: `The | rest | were | clean | because | their | owners | had | been | very | cautious.`,
       	    cancelation: `In | fact, | they | all | were | and | the | virus | nearly | destroyed | the | whole | system.`,
       	},
-      	question: `Comprehension question`, // Has there been a virus detected on computers at the office? - yes
+      	question: `Has there been a virus detected on computers at the office?`,
+	correct: "yes"
     },
     {
         ID: 7,
@@ -189,7 +195,8 @@ let raw_trial_info = [
       	    complement: `The | rest | were | dry | because | they | had | remembered | their | umbrellas.`,
       	    cancelation: `In | fact, | they | all | did | because | they | had | forgotten | their | umbrellas.`,
       	},
-      	question: `Comprehension question`, // Have all tourists managed to stay dry during the rainstorm? - no
+      	question: `Have all tourists managed to stay dry during the rainstorm?`,
+	correct: "no"
     },
     {
         ID: 8,
@@ -213,7 +220,8 @@ let raw_trial_info = [
       	    complement: `The | rest | were | going | to | be | stored | in | the | warehouse | until | the | following | season.`,
       	    cancelation: `In | fact, | they | all | had | since | they | were | stylish | and | cheap.`,
       	},
-      	question: `Comprehension question`, // Had all of the leather couches been sold prior to the furniture sale? - no
+      	question: `Had all of the leather couches been sold prior to the furniture sale?`,
+	correct: "no"
     },
     {
         ID: 9,
@@ -237,7 +245,8 @@ let raw_trial_info = [
       	    complement: `The | rest | were | mild | and | I | found | them | to | be | bland.`,
       	    cancelation: `In | fact, | they | all | were | but | fortunately | I | love | spicy | food.`,
       	},
-      	question: `Comprehension question`, // Have there been spicy dishes at the family potluck? - yes
+      	question: `Have there been spicy dishes at the family potluck?`,
+	correct: "yes"
     },
     {
         ID: 10,
@@ -261,7 +270,8 @@ let raw_trial_info = [
       	    complement: `The | rest | were | shut down | since | they | were | no | longer | popular.`,
       	    cancelation: `In | fact, | they | all | were | since | they | were | still | popular.`,
       	},
-      	question: `Comprehension question`, // Have all of the favorite rides been shut down? - no
+      	question: `Have all of the favorite rides been shut down?`,
+	correct: "no"
     },
     {
         ID: 11,
@@ -285,7 +295,8 @@ let raw_trial_info = [
       	    complement: `The | rest | were | safe | but | I | was | still | extremely | upset.`,
       	    cancelation: `In | fact, | they | all | were | even | though | I | had | secured | them.`,
       	},
-      	question: `Comprehension question`, // Have there been bottles of Chardonnay in the house before it was burglarized? - yes
+      	question: `Have there been bottles of Chardonnay in the house before it was burglarized?`,
+	correct: "yes"
     },
     {
         ID: 12,
@@ -309,7 +320,8 @@ let raw_trial_info = [
       	    complement: `The | rest | were | intact | so | it | should | still | be | able | to | eat | solid | food.`,
       	    cancelation: `In | fact, | they | all | were | because | its | owners | completely | neglected | its | oral | hygiene.`,
       	},
-      	question: `Comprehension question`, // Did the bulldog lack of a few intact teeth in his mouth? - yes
+      	question: `Did the bulldog lack of a few intact teeth in his mouth?`,
+	correct: "yes"
     },
     {
         ID: 13,
@@ -333,7 +345,8 @@ let raw_trial_info = [
       	    complement: `The | others | were | fine | so | it | would | not | cost | too | much | to | fix | it.`,
       	    cancelation: `In | fact, | they | all | were | so | the | cost | to | repair | it | would | be | enormous.`,
       	},
-      	question: `Comprehension question`, // Did the old bus have flat tires? - yes
+      	question: `Did the old bus have flat tires?`,
+	correct: "yes"
     },
     {
         ID: 14,
@@ -357,7 +370,8 @@ let raw_trial_info = [
       	    complement: `The | rest | were | wrong | so | my | theory | must | be | mistaken.`,
       	    cancelation: `In | fact, | they | all | were | so | I | should | be | able | to | publish | the | results.`,
       	},
-      	question: `Comprehension question`, // Have the experiments' results been completely surprising regarding the predictions? - no
+      	question: `Have the experiments' results been completely surprising regarding the predictions?`,
+	correct: "no"
     },
     {
         ID: 15,
@@ -381,7 +395,8 @@ let raw_trial_info = [
       	    complement: `The | rest | were | cheap | despite | my | family’s | love | for | luxurious | holidays.`,
       	    cancelation: `In | fact, | they | all | were | because | my | family | loves | luxurious | holidays.`,
       	},
-      	question: `Comprehension question`, // Did the family choose only cheap accomodations during their holiday trip? - no
+      	question: `Did the family choose only cheap accomodations during their holiday trip?`,
+	correct: "no"
     },
     {
         ID: 16,
@@ -405,7 +420,8 @@ let raw_trial_info = [
       	    complement: `The | others | were | untouched, | but | I | was | still | concerned | and | decided | to | call | her | parents.`,
       	    cancelation: `In | fact, | they | all | were | but | I | decided | not | to | call | her | parents | because | it | was | so | hard | to | find | a | babysitter.`,
       	},
-      	question: `Comprehension question`, // Have all new bottles of vodka been untouched? - no
+      	question: `Have all new bottles of vodka been untouched?`,
+	correct: "no"
     },
     {
         ID: 17,
@@ -429,7 +445,8 @@ let raw_trial_info = [
       	    complement: `The | others | were | fine | so | the | repairs | shouldn’t | be | too | expensive.`,
       	    cancelation: `In | fact, | they | all | were | so | they | will | require | extensive | repairs.`,
       	},
-      	question: `Comprehension question`, // Do any of the steps have to be repaired due to a dropped bowling ball? - yes
+      	question: `Do any of the steps have to be repaired due to a dropped bowling ball?`,
+	correct: "yes"
     },
     {
         ID: 18,
@@ -453,7 +470,7 @@ let raw_trial_info = [
       	    complement: `The | others | were | straightforward | and | I | feel | like | I | learned | a | lot.`,
       	    cancelation: `In | fact, | they | all | were | but | it | received | a | positive | review | anyway.`,
       	},
-      	question: `Comprehension question`, // Have there been difficult problems within the textbook? - yes
+      	question: `Have there been difficult problems within the textbook?`, correct: "yes"
     },
     {
         ID: 19,
@@ -477,7 +494,8 @@ let raw_trial_info = [
       	    complement: `The | others | were | normal | but | I | decided | to | order | more | anyway.`,
       	    cancelation: `In | fact, | they | all | did | which | confused | me | because | we | hadn’t | used | a | lot | this | morning.`,
       	},
-      	question: `Comprehension question`, // Have all liquid nitrogen containers been full? - no
+      	question: `Have all liquid nitrogen containers been full?`,
+	correct: "no"
     },
     {
         ID: 20,
@@ -501,7 +519,8 @@ let raw_trial_info = [
       	    complement: `The | others | were | not | invited | to | attend | because | the | teachers | didn’t | want | anyone | to | feel | left | out.`,
       	    cancelation: `In | fact, | they | all | did | because | the | teachers | didn’t | want | any | of | them | to | feel | left | out.`,
       	},
-      	question: `Comprehension question`, // Have there been honors students at the assembly? - yes
+      	question: `Have there been honors students at the assembly?`,
+	correct: "yes"
     },
     {
         ID: 21,
@@ -525,7 +544,7 @@ let raw_trial_info = [
       	    complement: `The | others | were | labeled | appropriately | though | a | few | of | them | had | been | shelved | in | the | wrong | place.`,
       	    cancelation: `In | fact, | they | all | were | which | made | his | job | much | more | difficult.`,
       	},
-      	question: `Comprehension question`, // Had all of the dictionaries been labeled correctly? - no
+      	question: `Had all of the dictionaries been labeled correctly?`, correct: "no"
     },
     {
         ID: 22,
@@ -549,7 +568,7 @@ let raw_trial_info = [
       	    complement: `The | others | were | blowouts | which | made | the | games | boring | to | watch.`,
       	    cancelation: `In | fact, | they | all | were | which | made | the | games | stressful | to | watch.`,
       	},
-      	question: `Comprehension question`, // Did the football team win each of their matches? - no
+      	question: `Did the football team win each of their matches?`, correct: "no"
     },
     {
         ID: 23,
@@ -573,7 +592,8 @@ let raw_trial_info = [
       	    complement: `The | others | were | totally | unfamiliar | which | made | the | test | somewhat | challenging.`,
       	    cancelation: `In | fact, | they | all | did | which | made | the | test | somewhat | easier.`,
       	},
-      	question: `Comprehension question`, // Do any Spanish vocabulary items have similarities with English words? - yes
+      	question: `Do any Spanish vocabulary items have similarities with English words?`,
+	correct: "yes"
     },
     {
         ID: 24,
@@ -597,7 +617,7 @@ let raw_trial_info = [
       	    complement: `The | others | were | relatively | steady | but | my | portfolio | was | still | down | for | the | year.`,
       	    cancelation: `In | fact, | they | all | did | but | my | portfolio | was | still | down | for | the | year.`,
       	},
-      	question: `Comprehension question`, // Did all the stock prices go down? - no
+      	question: `Did all the stock prices go down?`, correct: "no"
 
     }
 ]
@@ -696,8 +716,11 @@ const create_trial = function(trial, args) {
 	trigger: trial.trigger[args.trigger_type],
 	continuation: trial.continuation[args.continuation_type],
 	question: trial.question,
-	option1: "Yes",
-	option2: "No",
+	correct_answer: trial.correct,
+	option1: "yes",
+	option2: "no",
+	ID: trial.ID,
+
     }
 }
 
