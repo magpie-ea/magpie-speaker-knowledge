@@ -120,7 +120,7 @@ const self_paced_reading_practice = magpieViews.view_generator("self_paced_readi
 });
 
 const self_paced_reading = magpieViews.view_generator("self_paced_reading", {
-    trials: 1,
+    trials: trial_info.length,
     name: 'self_paced_reading',
     data: _.shuffle(trial_info),
 }, {
