@@ -41,8 +41,10 @@ const instructions = magpieViews.view_generator("instructions", {
   trials: 1,
   name: 'instructions',
   title: 'General Instructions',
- text: `In this experiment, you will read 24 short pieces of text. After each piece of text, you will be asked a question relating to it. Please read the texts carefully and answer the question based on your intuitive understanding of the situation described. <br/><br/>
-The texts are presented in 'self-paced reading' tasks, meaning that you will only see a single word at a time, and a new word will appear when you press the spacebar.`,
+ text: `In this experiment, you will read 24 short pieces of text. After each piece of text, you will be asked a question relating to it. Please <strong>read the texts carefully</strong> and answer the question based on your intuitive understanding of the situation described. <br/><br/>
+The texts are presented only piece by piece. To reveal each next part of the sentence, press SPACE. It is very important that you read each newly revealed chunk carefully, and that you <strong>try to understand each new piece of text as it is revealed to you</strong> Please do not rush through the text, using memory to recover the meaning of what you read!
+<br/><br/>
+We will start with a few rounds of practice.`,
   buttonText: 'go to practice '
 });
 
