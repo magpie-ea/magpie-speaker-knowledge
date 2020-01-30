@@ -1614,15 +1614,18 @@ const create_filler_trial = function (trial) {
   };
 };
 
-// fill in all trial templates in the list with the corresponding text from the raw_trial_info
-const trial_info = _.shuffle(trial_list.map(function (e) {
-  trial = create_trial(raw_trial_info[_.indexOf(trial_list, e)], e);
-  return trial;
-}));
+// fill in all trial templates in the list with the corresponding text from the raw_trial_info and shuffle
+const trial_info = _.shuffle(
+  trial_list.map(function (e) {
+    trial = create_trial(raw_trial_info[_.indexOf(trial_list, e)], e);
+    return trial;
+  })
+);
 
 console.log(trial);
 console.log(trial_info);
 
+// fill in all filler trial templates in the list with the corresponding text from the raw_trial_info and shuffle
 const filler_trial_info = _.shuffle(
   raw_filler_trial_info.map(function (e) {
     trial = create_filler_trial(
@@ -1632,5 +1635,13 @@ const filler_trial_info = _.shuffle(
     return trial;
   })
 );
-
 console.log(filler_trial_info);
+
+const main_trials = [
+  filler_trial_info[0],
+  filler_trial_info[1],
+  filler_trial_info[2],
+  trial_info[0]
+];
+//console.log(filler_trial_info[0 - 3]);
+console.log(main_trials);

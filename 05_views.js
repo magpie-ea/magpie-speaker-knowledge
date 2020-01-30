@@ -41,7 +41,7 @@ const instructions = magpieViews.view_generator("instructions", {
   trials: 1,
   name: 'instructions',
   title: 'General Instructions',
- text: `In this experiment, you will read 24 short pieces of text. After each piece of text, you will be asked a question relating to it. Please <strong>read the texts carefully</strong> and answer the question based on your intuitive understanding of the situation described. <br/><br/>
+  text: `In this experiment, you will read 24 short pieces of text. After each piece of text, you will be asked a question relating to it. Please <strong>read the texts carefully</strong> and answer the question based on your intuitive understanding of the situation described. <br/><br/>
 The texts are presented only piece by piece. To reveal each next part of the sentence, press SPACE. It is very important that you read each newly revealed chunk carefully, and that you <strong>try to understand each new piece of text as it is revealed to you</strong> Please do not rush through the text, using memory to recover the meaning of what you read!
 <br/><br/>
 We will start with a few rounds of practice.`,
@@ -49,11 +49,12 @@ We will start with a few rounds of practice.`,
 });
 
 const begin = magpieViews.view_generator("begin", {
-    trials: 1,
-    name: "begin",
-    title: "Get ready",
-    text: "The practice trials are now complete. When you are ready to begin the study, click 'Begin'.",
-    buttonText: "Begin"})
+  trials: 1,
+  name: "begin",
+  title: "Get ready",
+  text: "The practice trials are now complete. When you are ready to begin the study, click 'Begin'.",
+  buttonText: "Begin"
+})
 
 
 // In the post test questionnaire you can ask your participants addtional questions
@@ -112,23 +113,23 @@ const thanks = magpieViews.view_generator("thanks", {
 
 
 const self_paced_reading_practice = magpieViews.view_generator("self_paced_reading", {
-    trials: practice_trial_info.length,
-    name: 'self_paced_reading_practice',
-    data: practice_trial_info,
+  trials: practice_trial_info.length,
+  name: 'self_paced_reading_practice',
+  data: practice_trial_info,
 }, {
-    stimulus_container_generator: custom_self_paced_reading_stimulus,
-    handle_response_function: custom_self_paced_reading_response,
-    answer_container_generator: custom_self_paced_reading_answer
+  stimulus_container_generator: custom_self_paced_reading_stimulus,
+  handle_response_function: custom_self_paced_reading_response,
+  answer_container_generator: custom_self_paced_reading_answer
 });
 
 const self_paced_reading = magpieViews.view_generator("self_paced_reading", {
-    trials: trial_info.length,
-    name: 'self_paced_reading',
-    data: _.shuffle(trial_info),
+  trials: main_trials.length,
+  name: 'self_paced_reading',
+  data: main_trials,
 }, {
-    stimulus_container_generator: custom_self_paced_reading_stimulus,
-    handle_response_function: custom_self_paced_reading_response,
-    answer_container_generator: custom_self_paced_reading_answer
+  stimulus_container_generator: custom_self_paced_reading_stimulus,
+  handle_response_function: custom_self_paced_reading_response,
+  answer_container_generator: custom_self_paced_reading_answer
 });
 
 // There are many more templates available:
