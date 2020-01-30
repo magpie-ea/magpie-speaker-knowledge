@@ -1584,7 +1584,7 @@ const latin_square_lists = [
 const trial_list = _.flatten(_.sampleSize(latin_square_lists, 4));
 
 // fills in a single trial based on context_type, trigger_type and continuation_type
-const create_trial = function(trial, args) {
+const create_trial = function (trial, args) {
   return {
     knowledge: args.context_type,
     trigger_type: args.trigger_type,
@@ -1600,7 +1600,7 @@ const create_trial = function(trial, args) {
   };
 };
 
-const create_filler_trial = function(trial) {
+const create_filler_trial = function (trial) {
   return {
     ID: trial.ID,
     type: trial.type,
@@ -1615,20 +1615,22 @@ const create_filler_trial = function(trial) {
 };
 
 // fill in all trial templates in the list with the corresponding text from the raw_trial_info
-const trial_info = trial_list.map(function(e) {
+const trial_info = _.shuffle(trial_list.map(function (e) {
   trial = create_trial(raw_trial_info[_.indexOf(trial_list, e)], e);
   return trial;
-});
+}));
 
 console.log(trial);
 console.log(trial_info);
 
-const filler_trial_info = raw_filler_trial_info.map(function(e) {
-  trial = create_filler_trial(
-    raw_filler_trial_info[_.indexOf(raw_filler_trial_info, e)],
-    e
-  );
-  return trial;
-});
+const filler_trial_info = _.shuffle(
+  raw_filler_trial_info.map(function (e) {
+    trial = create_filler_trial(
+      raw_filler_trial_info[_.indexOf(raw_filler_trial_info, e)],
+      e
+    );
+    return trial;
+  })
+);
 
 console.log(filler_trial_info);
