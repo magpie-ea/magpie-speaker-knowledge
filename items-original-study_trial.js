@@ -1,4 +1,4 @@
-let filler_trials = [
+let raw_filler_trial_info = [
   {
     type: "filler",
     ID: 1,
