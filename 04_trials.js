@@ -1586,6 +1586,7 @@ const trial_list = _.flatten(_.sampleSize(latin_square_lists, 4));
 // fills in a single trial based on context_type, trigger_type and continuation_type
 const create_trial = function (trial, args) {
   return {
+    type: "main",
     knowledge: args.context_type,
     trigger_type: args.trigger_type,
     continuation_type: args.trigger_type.concat("-", args.continuation_type),
@@ -1615,33 +1616,56 @@ const create_filler_trial = function (trial) {
 };
 
 // fill in all trial templates in the list with the corresponding text from the raw_trial_info and shuffle
-const trial_info = _.shuffle(
-  trial_list.map(function (e) {
-    trial = create_trial(raw_trial_info[_.indexOf(trial_list, e)], e);
-    return trial;
-  })
-);
+const trial_info = trial_list.map(function (e) {
+  trial = create_trial(raw_trial_info[_.indexOf(trial_list, e)], e);
+  return trial;
+});
 
 console.log(trial);
 console.log(trial_info);
 
 // fill in all filler trial templates in the list with the corresponding text from the raw_trial_info and shuffle
-const filler_trial_info = _.shuffle(
-  raw_filler_trial_info.map(function (e) {
-    trial = create_filler_trial(
-      raw_filler_trial_info[_.indexOf(raw_filler_trial_info, e)],
-      e
-    );
-    return trial;
-  })
-);
+const filler_trial_info = raw_filler_trial_info.map(function (e) {
+  trial = create_filler_trial(
+    raw_filler_trial_info[_.indexOf(raw_filler_trial_info, e)],
+    e
+  );
+  return trial;
+});
 console.log(filler_trial_info);
 
-const main_trials = [
-  filler_trial_info[0],
-  filler_trial_info[1],
-  filler_trial_info[2],
-  trial_info[0]
-];
-//console.log(filler_trial_info[0 - 3]);
+// put main trials and filler trials together in one array
+var main_trials = _.shuffle([...trial_info, ...filler_trial_info]);
+// console.log("before");
 console.log(main_trials);
+// console.log(main_trials[12]);
+// // make sure that no two main trials come right after another
+// for (var i = 0; i < main_trials.length - 2; i++) {
+//   if (main_trials[i].type == "main" && main_trials[i + 1].type == "main") {
+//     console.log("founnd problem at index " + i);
+//     console.log(main_trials[i]);
+//     console.log(main_trials[i + 1].type);
+//     console.log(main_trials);
+//     loop2: for (var j = 0; j < main_trials.length - 6; j++) {
+//       if (
+//         main_trials[j].type == "filler" &&
+//         main_trials[j].type == "filler" &&
+//         main_trials[j].type == "filler" &&
+//         main_trials[j].type == "filler"
+//       ) {
+//         let temp = main_trials[i];
+//         console.log(temp);
+//         console.log(i);
+//         console.log(j + 2);
+//         console.log(main_trials);
+//         main_trials.splice(i, 1);
+//         main_trials.splice(j + 2, 0, temp);
+//         i == 0;
+//         j == 0;
+//         break loop2;
+//         console.log(main_trials);
+//       }
+//     }
+//   }
+// }
+// console.log(main_trials);
