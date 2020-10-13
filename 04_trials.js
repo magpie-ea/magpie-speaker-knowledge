@@ -22,6 +22,14 @@ const practice_trial_info = [
     question: "Will you see more examples?",
     option1: "yes",
     option2: "no"
+  },
+  {
+    context: `Yesterday | I | went | to | a | book | store.`,
+    trigger: `I bought a book suggested by the salesperson.`,
+    continuation: `I could not stop reading it until late at night.`,
+    question: "Was the new book enjoyable?",
+    option1: "yes",
+    option2: "no"
   }
 ];
 

@@ -35,8 +35,8 @@ custom_self_paced_reading_response = function(config, CT, magpie, answer_contain
     const context = config.data[CT].context.trim().split(" | ");
     const trigger = config.data[CT].trigger.trim().split(" | ");
     const continuation = config.data[CT].continuation.trim().split(" | ");
-    const sentenceList = context.concat(trigger, continuation)
-
+    const sentenceList = context.concat(trigger, continuation).filter(item => item);
+    // console.log(sentenceList);
     let spaceCounter = 0;
 
     let wordList;
@@ -114,10 +114,10 @@ custom_self_paced_reading_response = function(config, CT, magpie, answer_contain
 
 		    // save all reaction times for double checking
 		    all_reaction_times: reactionTimes,
-                    context_reaction_times: context_reaction,
+        context_reaction_times: context_reaction,
 		    trigger_reaction_times: trigger_reaction,
 		    continuation_reaction_times: continuation_reaction,
-                    time_spent: RT
+        time_spent: RT
 		};
 
 		// push the trial data and goto the next view

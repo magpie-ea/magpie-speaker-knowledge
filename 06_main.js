@@ -18,7 +18,7 @@ $("document")
       views_seq: [
             intro,
             instructions,
-	    //self_paced_reading_practice,
+	    self_paced_reading_practice,
 	    begin,
             self_paced_reading,
             post_test,
