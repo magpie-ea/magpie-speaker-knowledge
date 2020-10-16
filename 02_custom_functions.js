@@ -111,6 +111,8 @@ custom_self_paced_reading_response = function(config, CT, magpie, answer_contain
                     trial_name: config.name,
                     trial_number: CT + 1,
                     response: $("input[name=answer]:checked").val(),
+                    // record whether given response matches expected response
+                    correctness: $("input[name=answer]:checked").val() === config.data[CT].correct_answer, 
 
 		    // save all reaction times for double checking
 		    all_reaction_times: reactionTimes,
