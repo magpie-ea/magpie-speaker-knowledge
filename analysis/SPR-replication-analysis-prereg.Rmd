@@ -1,0 +1,32 @@
+---
+title: "Bergen & Grodner Replication Study Analysis (prereg)"
+author: "Polina Tsvilodub"
+date: "10/16/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries, include = FALSE}
+library(tidyverse)
+library(brms)
+library(tidyboot)
+```
+
+```{r data}
+# read in data
+data <- read_csv("~/Desktop/SPR_debug_results.csv")
+
+glimpse(data)
+```
+
+- glimpse
+- wrangle: split RTs into critical regions
+- clean: drop unnecessary columns
+- some initial plots (overall RTs; counts of lists / trial IDs / conditions)
+- apply exclusion criteria: accuracy, single RTs 
+- plot: by-trigger X by-knowledge , trigger vs complement sentences, cancellation (scalar trigger sentences) 
+- transformations
+- stats

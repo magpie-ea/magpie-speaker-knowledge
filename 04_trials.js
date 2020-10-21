@@ -1643,7 +1643,7 @@ const filler_trial_info = raw_filler_trial_info.map(function (e) {
 console.log(filler_trial_info);
 
 // put main trials and filler trials together in one array
-var main_trials = _.shuffle([...trial_info, ...filler_trial_info]);
+var main_trials = _.shuffle([...trial_info, ...filler_trial_info]);//.slice(0, 10);
 // console.log("before");
 console.log(main_trials);
 // console.log(main_trials[12]);
