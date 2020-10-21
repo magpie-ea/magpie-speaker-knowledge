@@ -106,7 +106,7 @@ custom_self_paced_reading_response = function(config, CT, magpie, answer_contain
 		let trigger_reaction =  reactionTimes.slice(context_wordList.length, context_wordList.length + trigger_wordList.length)
 		let continuation_reaction =  reactionTimes.slice(context_wordList.length + trigger_wordList.length)
     // console.log("context RT list as STRING")
-    // console.log(context_reaction.toString())
+    // console.log(context_reaction.join("|"))
 		// set which data will be saved
 		let trial_data = {
                     trial_name: config.name,
@@ -117,10 +117,10 @@ custom_self_paced_reading_response = function(config, CT, magpie, answer_contain
 
 		    // save all reaction times for double checking
         // convert lists to strings for data analysis in R -- otherwise the float lists are automatically collapsed by R into one int
-		    all_reaction_times: reactionTimes.toString(),
-        context_reaction_times: context_reaction.toString(),
-		    trigger_reaction_times: trigger_reaction.toString(),
-		    continuation_reaction_times: continuation_reaction.toString(),
+		    all_reaction_times: reactionTimes.join("|"),
+        context_reaction_times: context_reaction.join("|"),
+		    trigger_reaction_times: trigger_reaction.join("|"),
+		    continuation_reaction_times: continuation_reaction.join("|"),
         time_spent: RT
 		};
 

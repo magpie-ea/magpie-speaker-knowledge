@@ -17,16 +17,104 @@ library(tidyboot)
 
 ```{r data}
 # read in data
-data <- read_csv("~/Desktop/SPR_debug_results.csv")
+data <- read_csv("~/Desktop/results-SPR-test.csv")
 
 glimpse(data)
 ```
 
-- glimpse
-- wrangle: split RTs into critical regions
-- clean: drop unnecessary columns
+``` {r}
+# wrangle: transform RT strings back into numbers 
+data_int <- data %>% 
+  # select relevant columns
+  select(-X33, -QUD, -startDate, -startTime, -endTime, -timeSpent) %>%
+  mutate(
+     # make categorical predictors factors
+  knowledge = factor(knowledge, levels = c("full", "partial")),
+  trigger_type = factor(trigger_type, levels = c("scalar", "focused")),
+  continuation_type = as.factor(continuation_type),
+  all_RTs_int = strsplit(all_reaction_times, "|", fixed = T),
+  context_RTs_int = strsplit(context_reaction_times, "|", fixed = T),
+  trigger_RTs_int = strsplit(trigger_reaction_times, "|", fixed = T),
+  continuation_RTs_int = strsplit(continuation_reaction_times, "|", fixed = T)
+)
+glimpse(data_int)
+
+# split RTs into critical regions
+data_int_split <- data_int %>%
+  rowwise() %>%
+  mutate(
+  # for trigger sentences, only the first chunk is the critical one for scalar triggers (contains "some of")
+  # the first two chunks are critical for focused triggers ("only" and "some of")
+  trigger_RT_only = ifelse(trigger_type =="focused", trigger_RTs_int[1], NA) %>% as.numeric(),
+  trigger_RT_some = ifelse(trigger_type == "focused", trigger_RTs_int[2], trigger_RTs_int[1]) %>% as.numeric(),
+  # in the continuation sentence, in the complement condition, the anaphora (first chunk) and 
+  # the predicate (second chunk) are critical  
+  continuation_RT_anaphora = ifelse(continuation_type != "scalar-cancelation", continuation_RTs_int[1], NA) %>%
+    as.numeric(),
+  continuation_RT_predicate = ifelse(continuation_type != "scalar-cancelation", continuation_RTs_int[2], NA) %>%
+    as.numeric()
+  # not yet sure what we need here 
+  # continuation_RT_cancellation  
+) 
+glimpse(data_int_split)
+# transform them into ints 
+```
+
+- apply exclusion criteria: accuracy on questions > 0.8; exclude single RTs < 150 or > 2000
+``` {r}
+# submission_id column missing!
+data_int_split_filter <- data_int_split %>% 
+ # group_by(submission_id) %>% 
+ # mutate(
+ #   subj_acc = mean(correctness == T)
+ #   ) %>%
+ # ungroup() %>%
+  # exclude participants with accuracy below 0.8
+#  filter(subj_acc > 0.8,
+  filter((trigger_RT_only > 150) & (trigger_RT_only < 2000), (trigger_RT_some > 150) &
+         (trigger_RT_some < 2000), (continuation_RT_anaphora > 150) & (continuation_RT_anaphora < 2000),
+         (continuation_RT_predicate > 150) & (continuation_RT_predicate < 2000))
+```
+
 - some initial plots (overall RTs; counts of lists / trial IDs / conditions)
-- apply exclusion criteria: accuracy, single RTs 
+ 
 - plot: by-trigger X by-knowledge , trigger vs complement sentences, cancellation (scalar trigger sentences) 
-- transformations
-- stats
+
+- transformations : log-transform RTs
+``` {r}
+d_tidy_log_main <- data_int_split_filter %>%
+  # get main experimental trials only 
+  filter(type == "main") %>%
+  mutate(
+    trigger_RT_only_log = log(trigger_RT_only),
+    trigger_RT_some_log = log(trigger_RT_some),
+    continuation_RT_anaphora_log = log(continuation_RT_anaphora),
+    continuation_RT_predicate_log = log (continuation_RT_predicate)
+  )
+```
+
+- stats: GLMs
+``` {r}
+# contrast coding of the predictors
+contrasts(d_tidy_log$knowledge) <- contr.sum(2)
+contrasts(d_tidy_log$trigger_type) <- contr.sum(2)
+
+# model 1: trigger RT ("some of")
+model_trigger <- brm(
+  trigger_RT_some_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  data = d_tidy_log,
+  iter = 3000,
+  cores = 4
+)
+
+summary(model_trigger)
+
+# model 2: continuation anaphora RT ("the others / the rest")
+model_anaphora <- brm(
+  continuation_RT_anaphora_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  data = d_tidy_log,
+  iter = 3000,
+  cores = 4
+)
+summary(model_anaphora)
+```
