@@ -5,6 +5,8 @@ date: "10/16/2020"
 output: html_document
 ---
 
+This script includes the preprocessing and analyses preregistered for our replication of the study by Bergen & Grodner "Speaker Knowledge Influences the Comprehension of Pragmatic Inferences" (2012).
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -15,23 +17,33 @@ library(brms)
 library(tidyboot)
 ```
 
-```{r data}
+```{r data, include=FALSE}
 # read in data
 data <- read_csv("~/Desktop/results-SPR-test.csv")
 
 glimpse(data)
 ```
+``` {r counts}
+# some initial counts of the trial kinds for checking
+data %>% count(type)
+data %>% count(knowledge, trigger_type, continuation_type)
+```
 
-``` {r}
+``` {r split_RTs}
+# get main trials 
+data_main <- data %>% 
+  filter(trial_name == "self_paced_reading")
+
 # wrangle: transform RT strings back into numbers 
-data_int <- data %>% 
+data_int <- data_main %>% 
   # select relevant columns
   select(-X33, -QUD, -startDate, -startTime, -endTime, -timeSpent) %>%
   mutate(
-     # make categorical predictors factors
+  # make categorical predictors factors with correct levels for later contrast coding
   knowledge = factor(knowledge, levels = c("full", "partial")),
   trigger_type = factor(trigger_type, levels = c("scalar", "focused")),
   continuation_type = as.factor(continuation_type),
+  # split RTs
   all_RTs_int = strsplit(all_reaction_times, "|", fixed = T),
   context_RTs_int = strsplit(context_reaction_times, "|", fixed = T),
   trigger_RTs_int = strsplit(trigger_reaction_times, "|", fixed = T),
@@ -39,8 +51,14 @@ data_int <- data %>%
 )
 glimpse(data_int)
 
+# get filler trials (in case they're needed)
+data_int_filler <- data_int %>% filter(type "filler")
+
+# get critical main trials
+data_int_critical <- data_int %>% filter(type == "main")
+
 # split RTs into critical regions
-data_int_split <- data_int %>%
+data_int_split <- data_int_critical  %>%
   rowwise() %>%
   mutate(
   # for trigger sentences, only the first chunk is the critical one for scalar triggers (contains "some of")
@@ -57,13 +75,34 @@ data_int_split <- data_int %>%
   # continuation_RT_cancellation  
 ) 
 glimpse(data_int_split)
-# transform them into ints 
+# pivot to long format
+data_int_split_long <- data_int_split %>% pivot_longer(cols = contains("_RT_"), names_to = "region", values_to = "critical_RTs") %>% drop_na("critical_RTs")
+```
+
+- some initial plots before exclusions
+``` {r init_plots}
+# plot dist of overall RTs per trial, by trial type 
+data_main %>%
+  ggplot(aes(x = time_spent, fill = type)) +
+  geom_density(alpha = 0.3)
+
+# plot overall RTs per trial by knowledge X trigger type in critical trials
+data_int_critical %>%
+  ggplot(aes(x = trigger_type, y = time_spent, fill = trigger_type)) +
+  geom_boxplot(alpha = 0.3) +
+  facet_grid(~knowledge)
+
+# plot single RTs of critical regions by knowledge  
+data_int_split_long %>%
+  ggplot(aes(x = knowledge, y = critical_RTs, fill = knowledge)) +
+  geom_boxplot(alpha = 0.3) +
+  facet_grid(~region) 
 ```
 
 - apply exclusion criteria: accuracy on questions > 0.8; exclude single RTs < 150 or > 2000
-``` {r}
+``` {r exclusions}
 # submission_id column missing!
-data_int_split_filter <- data_int_split %>% 
+data_int_split_filter <- data_int_split_long %>% 
  # group_by(submission_id) %>% 
  # mutate(
  #   subj_acc = mean(correctness == T)
@@ -71,20 +110,21 @@ data_int_split_filter <- data_int_split %>%
  # ungroup() %>%
   # exclude participants with accuracy below 0.8
 #  filter(subj_acc > 0.8,
-  filter((trigger_RT_only > 150) & (trigger_RT_only < 2000), (trigger_RT_some > 150) &
-         (trigger_RT_some < 2000), (continuation_RT_anaphora > 150) & (continuation_RT_anaphora < 2000),
-         (continuation_RT_predicate > 150) & (continuation_RT_predicate < 2000))
+  filter((critical_RTs > 150) & (critical_RTs < 2000))
 ```
 
-- some initial plots (overall RTs; counts of lists / trial IDs / conditions)
+- more plots after exclusions (mean RTs over critical regions and bootstrapped 95%-CIs)
  
-- plot: by-trigger X by-knowledge , trigger vs complement sentences, cancellation (scalar trigger sentences) 
+```{r main_plots}
+data_int_split_filter_summary <- data_int_split_filter %>%
+  group_by(knowledge, trigger_type, region) %>% 
+  tidyboot_mean(column = critical_RTs)
 
+# plots TBD
+```
 - transformations : log-transform RTs
-``` {r}
+``` {r logs}
 d_tidy_log_main <- data_int_split_filter %>%
-  # get main experimental trials only 
-  filter(type == "main") %>%
   mutate(
     trigger_RT_only_log = log(trigger_RT_only),
     trigger_RT_some_log = log(trigger_RT_some),
@@ -93,8 +133,8 @@ d_tidy_log_main <- data_int_split_filter %>%
   )
 ```
 
-- stats: GLMs
-``` {r}
+- stats: GLMMs
+``` {r brm_models}
 # contrast coding of the predictors
 contrasts(d_tidy_log$knowledge) <- contr.sum(2)
 contrasts(d_tidy_log$trigger_type) <- contr.sum(2)
