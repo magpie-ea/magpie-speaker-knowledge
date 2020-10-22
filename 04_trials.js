@@ -16,21 +16,13 @@ const practice_trial_info = [
     option2: "no"
   },
   {
-    context: `This | is | the | third | example | paragraph.`,
+    context: `This is the | third | example | paragraph.`,
     trigger: `It | is | also | the | final | example.`,
-    continuation: `You | will | not | see | any | more | examples | for | practice.`,
+    continuation: `You | will | not see | any | more examples | for | practice.`,
     question: "Will you see more examples?",
     option1: "yes",
     option2: "no"
-  },
-  // {
-  //   context: `Yesterday | I | went | to | a | book | store.`,
-  //   trigger: `I | bought a book | suggested | by the salesperson.`,
-  //   continuation: `I could | not stop | reading it | until | late at night.`,
-  //   question: "Was the new book enjoyable?",
-  //   option1: "yes",
-  //   option2: "no"
-  // }
+  }
 ];
 
 let raw_trial_info = [
@@ -138,7 +130,7 @@ let raw_trial_info = [
     ID: 5,
     context: {
       full: `At my client’s request, | I | meticulously compiled | the investment report.`,
-      partial: `P`
+      partial: `At my client’s request, | I | skimmed | the investment report.`
     },
     context_length: {
       full: 10,
@@ -528,7 +520,7 @@ let raw_trial_info = [
       focused: 8
     },
     continuation: {
-      complement: `The others | were not | invited to | attend because | the teachers | didn’t want | anyone to | feel left out.`,
+      complement: `The others | were not invited | to attend because | the teachers | didn’t want | anyone to | feel left out.`,
       cancelation: `In fact, | they all | did | because the | teachers didn’t | want any | of them | to feel | left out.`
     },
     question: `Have there been honors students at the assembly?`,
@@ -554,7 +546,7 @@ let raw_trial_info = [
     },
     continuation: {
       complement: `The others | were labeled | appropriately though | a few | of them | had been | shelved in | the wrong place.`,
-      cancelation: `In fact, | they all | were | which made | his job | much more difficult.`
+      cancelation: `In fact, | they all | were | which made | the job | much more difficult.`
     },
     question: `Had all of the dictionaries at the library been labeled correctly?`,
     correct: "no"
@@ -1023,7 +1015,7 @@ let raw_filler_trial_info = [
     trigger_length: 18,
     continuation: ``,
     question: `Did I eat ice cream that evening? `,
-    correct: "yes"
+    correct: "no"
   },
   {
     type: "filler",
@@ -1054,7 +1046,7 @@ let raw_filler_trial_info = [
     context_length: 8,
     trigger: `The last | time | we played together, | I thought I | had won.`,
     trigger_length: 11,
-    continuation: `When we |tallied up | the scores | I | discovered that he | beat me by | one point.`,
+    continuation: `When we | tallied up | the scores | I | discovered that he | beat me by | one point.`,
     question: `Did my uncle beat me by a lot of points?`,
     correct: "no"
   },
@@ -1285,7 +1277,7 @@ let raw_filler_trial_info = [
     context_length: 8,
     trigger: `I | looked | under all the | seats around me, | but I didn't see | it.`,
     trigger_length: 13,
-    continuation: `I couldn 't | even | find it by | calling it and | listening for the |ring, because| I had turned it | off before the | performance.`,
+    continuation: `I couldn 't | even | find it by | calling it and | listening for the | ring, because | I had turned it | off before the | performance.`,
     question: `Had my phone rung during the show?`,
     correct: "no"
   },

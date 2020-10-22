@@ -63,8 +63,10 @@ data_int_split <- data_int_critical  %>%
   mutate(
   # for trigger sentences, only the first chunk is the critical one for scalar triggers (contains "some of")
   # the first two chunks are critical for focused triggers ("only" and "some of")
-  trigger_RT_only = ifelse(trigger_type =="focused", trigger_RTs_int[1], NA) %>% as.numeric(),
-  trigger_RT_some = ifelse(trigger_type == "focused", trigger_RTs_int[2], trigger_RTs_int[1]) %>% as.numeric(),
+    # item 19 trigger sentence starts with another word 
+  trigger_RT_only = ifelse(trigger_type =="focused", ifelse(ID == 19, trigger_RTs_int[2], trigger_RTs_int[1]), NA) %>% as.numeric(),
+  trigger_RT_some = ifelse(trigger_type == "focused", ifelse(ID == 19, trigger_RTs_int[3], trigger_RTs_int[2]),
+                           ifelse(ID == 19, trigger_RTs_int[2], trigger_RTs_int[1])) %>% as.numeric(),
   # in the continuation sentence, in the complement condition, the anaphora (first chunk) and 
   # the predicate (second chunk) are critical  
   continuation_RT_anaphora = ifelse(continuation_type != "scalar-cancelation", continuation_RTs_int[1], NA) %>%
