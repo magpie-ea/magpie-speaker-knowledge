@@ -176,14 +176,14 @@ const custom_botcaptcha = function(config){
       $("main").html(`<div class="magpie-view">
         <h1 class='magpie-view-title'>Are you a bot?</h1>
         <br />
-        <section class="magpie-text-container" align="center">
+        <section class="magpie-view-question" align="center">
             <p class="magpie-text-container">${config.speaker} says to ${config.listener}: It's a beautiful day, isn't it?</p>
         </section>
         <br />
-        <section class="magpie-text-container" align="center">
+        <section class="magpie-view-question" align="center">
             <p class="magpie-text-container" id="quest-response">Who is ${config.speaker} talking to?</p>
             <section class="magpie-text-container" align="center">
-                <p class="magpie-text-container">Please enter your answer in lower case.</p>
+                <p class="magpie-answer-container">Please enter your answer in lower case.</p>
             </section
             <br />
             <textarea rows="1" cols="15" name="botresponse" id="listener-response"></textarea>
@@ -191,14 +191,14 @@ const custom_botcaptcha = function(config){
         </section>
         <br />
         <button class="magpie-view-button" id='next'>Let's go!</button>
-        <section class="answer-container" align="center">
-            <p class="text" id="error_incorrect" style="color: #7CB637">This is incorrect.</p>
-            <p class="text" id="error_2more" style="color: #7CB637">You have 2 more trials.</p>
-            <p class="text" id="error_1more" style="color: #7CB637">You have 1 more trial.</p>
-            <p class="text" id="error" style="color: #7CB637">Error: You failed the comprehension questions too many times.
+        <section class="magpie-answer-container" align="center">
+            <p class="text" id="error_incorrect" style="color: #7CB637" align="center">This is incorrect.</p>
+            <p class="text" id="error_2more" style="color: #7CB637" align="center">You have 2 more trials.</p>
+            <p class="text" id="error_1more" style="color: #7CB637" align="center">You have 1 more trial.</p>
+            <p class="text" id="error" style="color: #7CB637" align="center">Error: You failed the comprehension questions too many times.
             You are not permitted to complete the HIT. Please click 'Return HIT' to avoid any impact on your approval rating.
             <br/><br/>
-            If you believe you are receiving thin message in error, please email <a href="mailto:polinats@mit.edu">polinats@mit.edu</a> </p>
+            If you believe you are receiving thin message in error, please email <a href="mailto:ptsvilodub@uos.de">ptsvilodub@uos.de</a> </p>
         </section>
         </div>`);
 // don't allow to press enter in the response field
