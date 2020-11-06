@@ -132,6 +132,21 @@ const self_paced_reading = magpieViews.view_generator("self_paced_reading", {
   answer_container_generator: custom_self_paced_reading_answer
 });
 
+// speaker and listener names lists for the captcha trial
+var speaker = _.sample(["James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph", "Thomas", "Charles"]);
+var listener = _.sample(["Mary", "Patricia", "Jennifer", "Linda", "Elizabeth", "Barbara", "Susan", "Jessica", "Sarah", "Margaret"]);
+// captcha 
+const botcaptcha = custom_botcaptcha({
+  name: 'botcaptcha',
+  trials: 1,
+  story: speaker + ' says to ' + listener + ': "It\'s a beautiful day, isn\'t it?"',
+  question: "Who is " + speaker + " talking to?",
+  speaker: speaker,
+  listener: listener
+
+});
+
+
 // There are many more templates available:
 // forced_choice, slider_rating, dropdown_choice, testbox_input, rating_scale, image_selection, sentence_choice,
 // key_press, self_paced_reading and self_paced_reading_rating_scale
