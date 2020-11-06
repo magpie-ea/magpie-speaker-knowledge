@@ -1581,7 +1581,7 @@ const latin_square_lists = [
 
 // raw_trial_info = _.shuffle(raw_trial_info);
 
-const trial_list = _.flatten(_.sampleSize(latin_square_lists, 4));
+const trial_list = _.flatten(_.sampleSize(latin_square_lists, 2)); // set to 4 for original trial nr
 
 // fills in a single trial based on context_type, trigger_type and continuation_type
 const create_trial = function (trial, args) {
@@ -1632,10 +1632,14 @@ const filler_trial_info = raw_filler_trial_info.map(function (e) {
   );
   return trial;
 });
-console.log(filler_trial_info);
 
+// grab half of the fillers
+const filler_trials = _.shuffle(filler_trial_info).slice(0, 33);
+
+// console.log(filler_trial_info);
+console.log(filler_trials);
 // put main trials and filler trials together in one array
-var main_trials = _.shuffle([...trial_info, ...filler_trial_info]) // .slice(0, 10);
+var main_trials = _.shuffle([...trial_info, ...filler_trials]) // .slice(0, 10);; filler_trial_info originally
 // console.log("before");
 console.log(main_trials);
 // console.log(main_trials[12]);
