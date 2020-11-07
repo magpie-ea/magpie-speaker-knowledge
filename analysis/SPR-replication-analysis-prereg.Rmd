@@ -159,7 +159,7 @@ contrasts(d_tidy_log_main$trigger_type) <- contr.sum(2)
 # model 1: trigger RT ("some of")
 d_tidy_log_some_of <- d_tidy_log_main %>% filter(region == "trigger_RT_some")
 model_trigger <- brm(
-  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 + knowledge * trigger_type | ID),
   data = d_tidy_log_some_of,
   iter = 3000,
   cores = 4
@@ -170,7 +170,7 @@ summary(model_trigger)
 # model 2 : "only" for  focused sentences
 d_tidy_log_only <- d_tidy_log_main %>% filter(region == "trigger_RT_only")
 model_only <- brm(
-  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 + knowledge * trigger_type | ID),
   data = d_tidy_log_only,
   iter = 3000,
   cores = 4
@@ -180,7 +180,7 @@ summary(d_tidy_log_only)
 # model 3: 
 d_tidy_log_trigger_second <- d_tidy_log_main %>% filter(region == "trigger_RT_second_chunk")
 model_trigger_second <- brm(
-  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 + knowledge * trigger_type | ID),
   data = d_tidy_log_trigger_second,
   iter = 3000,
   cores = 4
@@ -190,7 +190,7 @@ summary(model_trigger_second)
 # model 4
 d_tidy_log_trigger_third <- d_tidy_log_main %>% filter(region == "trigger_RT_third_chunk")
 model_trigger_third <- brm(
-  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 + knowledge * trigger_type | ID),
   data = d_tidy_log_trigger_third,
   iter = 3000,
   cores = 4
@@ -200,7 +200,7 @@ summary(model_trigger_third)
 # model 5: continuation anaphora RT ("the others / the rest")
 d_tidy_log_anaphora <- d_tidy_log_main %>% filter(region == "continuation_RT_anaphora")
 model_anaphora <- brm(
-  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 + knowledge * trigger_type | ID),
   data = d_tidy_log_anaphora,
   iter = 3000,
   cores = 4
@@ -210,7 +210,7 @@ summary(model_anaphora)
 # model 6
 d_tidy_log_predicate <- d_tidy_log_main %>% filter(region == "continuation_RT_predicate")
 model_predicate <- brm(
-  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 + knowledge * trigger_type | ID),
   data = d_tidy_log_predicate,
   iter = 3000,
   cores = 4
@@ -220,7 +220,7 @@ summary(model_predicate)
 # model 7
 d_tidy_log_clause_boundary <- d_tidy_log_main %>% filter(region == "continuation_RT_clause_boundary")
 model_clause_boundary <- brm(
-  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 + knowledge * trigger_type | ID),
   data = d_tidy_log_clause_boundary,
   iter = 3000,
   cores = 4
@@ -230,7 +230,7 @@ summary(model_clause_boundary)
 # model 8
 d_tidy_log_continuation_fourth <- d_tidy_log_main %>% filter(region == "continuation_RT_fourth_chunk")
 model_continuation_fourth <- brm(
-  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 + knowledge * trigger_type | ID),
   data = d_tidy_log_continuation_fourth,
   iter = 3000,
   cores = 4
