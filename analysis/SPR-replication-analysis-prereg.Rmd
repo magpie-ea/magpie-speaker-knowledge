@@ -19,10 +19,11 @@ library(tidyboot)
 
 ```{r data, include=FALSE}
 # read in data
-data <- read_csv("~/Desktop/results-SPR-test.csv")
+data <- read_csv("~/Desktop/results-SPR-halflength.csv")
 
 glimpse(data)
 ```
+
 ``` {r counts}
 # some initial counts of the trial kinds for checking
 data %>% count(type)
@@ -37,7 +38,7 @@ data_main <- data %>%
 # wrangle: transform RT strings back into numbers 
 data_int <- data_main %>% 
   # select relevant columns
-  select(-X33, -QUD, -startDate, -startTime, -endTime, -timeSpent) %>%
+  select( -QUD, -startDate, -startTime, -endTime, -timeSpent) %>%
   mutate(
   # make categorical predictors factors with correct levels for later contrast coding
   knowledge = factor(knowledge, levels = c("full", "partial")),
@@ -52,7 +53,7 @@ data_int <- data_main %>%
 glimpse(data_int)
 
 # get filler trials (in case they're needed)
-data_int_filler <- data_int %>% filter(type "filler")
+data_int_filler <- data_int %>% filter(type == "filler")
 
 # get critical main trials
 data_int_critical <- data_int %>% filter(type == "main")
@@ -65,13 +66,30 @@ data_int_split <- data_int_critical  %>%
   # the first two chunks are critical for focused triggers ("only" and "some of")
     # item 19 trigger sentence starts with another word 
   trigger_RT_only = ifelse(trigger_type =="focused", ifelse(ID == 19, trigger_RTs_int[2], trigger_RTs_int[1]), NA) %>% as.numeric(),
-  trigger_RT_some = ifelse(trigger_type == "focused", ifelse(ID == 19, trigger_RTs_int[3], trigger_RTs_int[2]),
+  trigger_RT_some = ifelse(trigger_type == "focused", 
+                           ifelse(ID == 19, trigger_RTs_int[3], trigger_RTs_int[2]),
                            ifelse(ID == 19, trigger_RTs_int[2], trigger_RTs_int[1])) %>% as.numeric(),
-  # in the continuation sentence, in the complement condition, the anaphora (first chunk) and 
+  # second sentence chunk (two words after trigger)
+  trigger_RT_second_chunk = ifelse(trigger_type == "focused", 
+                                    ifelse(ID == 19, trigger_RTs_int[4], trigger_RTs_int[3]),
+                                    ifelse(ID == 19, trigger_RTs_int[3], trigger_RTs_int[2])) %>% as.numeric(),
+  # third region of trigger sentences 
+  trigger_RT_third_chunk = ifelse(trigger_type == "focused", 
+                                    ifelse(ID == 19, trigger_RTs_int[5], trigger_RTs_int[4]),
+                                    ifelse(ID == 19, trigger_RTs_int[4], trigger_RTs_int[3])) %>% as.numeric(),
+  # in the continuation sentence, in the complement condition, the anaphora (first chunk) and
   # the predicate (second chunk) are critical  
-  continuation_RT_anaphora = ifelse(continuation_type != "scalar-cancelation", continuation_RTs_int[1], NA) %>%
+  continuation_RT_anaphora = ifelse(continuation_type != "scalar-cancelation",
+                                    continuation_RTs_int[1], NA) %>% 
     as.numeric(),
-  continuation_RT_predicate = ifelse(continuation_type != "scalar-cancelation", continuation_RTs_int[2], NA) %>%
+  continuation_RT_predicate = ifelse(continuation_type != "scalar-cancelation",
+                                     continuation_RTs_int[2], NA) %>%
+    as.numeric(),
+  continuation_RT_clause_boundary = ifelse(continuation_type != "scalar-cancelation",
+                                     continuation_RTs_int[3], NA) %>%
+    as.numeric(),
+  continuation_RT_fourth_chunk = ifelse(continuation_type != "scalar-cancelation",
+                                     continuation_RTs_int[4], NA) %>%
     as.numeric()
   # not yet sure what we need here 
   # continuation_RT_cancellation  
@@ -128,35 +146,95 @@ data_int_split_filter_summary <- data_int_split_filter %>%
 ``` {r logs}
 d_tidy_log_main <- data_int_split_filter %>%
   mutate(
-    trigger_RT_only_log = log(trigger_RT_only),
-    trigger_RT_some_log = log(trigger_RT_some),
-    continuation_RT_anaphora_log = log(continuation_RT_anaphora),
-    continuation_RT_predicate_log = log (continuation_RT_predicate)
+    critical_RTs_log = log(critical_RTs)
   )
 ```
 
 - stats: GLMMs
 ``` {r brm_models}
 # contrast coding of the predictors
-contrasts(d_tidy_log$knowledge) <- contr.sum(2)
-contrasts(d_tidy_log$trigger_type) <- contr.sum(2)
+contrasts(d_tidy_log_main$knowledge) <- contr.sum(2)
+contrasts(d_tidy_log_main$trigger_type) <- contr.sum(2)
 
 # model 1: trigger RT ("some of")
+d_tidy_log_some_of <- d_tidy_log_main %>% filter(region == "trigger_RT_some")
 model_trigger <- brm(
-  trigger_RT_some_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
-  data = d_tidy_log,
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  data = d_tidy_log_some_of,
   iter = 3000,
   cores = 4
 )
 
 summary(model_trigger)
 
-# model 2: continuation anaphora RT ("the others / the rest")
+# model 2 : "only" for  focused sentences
+d_tidy_log_only <- d_tidy_log_main %>% filter(region == "trigger_RT_only")
+model_only <- brm(
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  data = d_tidy_log_only,
+  iter = 3000,
+  cores = 4
+)
+summary(d_tidy_log_only)
+
+# model 3: 
+d_tidy_log_trigger_second <- d_tidy_log_main %>% filter(region == "trigger_RT_second_chunk")
+model_trigger_second <- brm(
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  data = d_tidy_log_trigger_second,
+  iter = 3000,
+  cores = 4
+)
+summary(model_trigger_second)
+
+# model 4
+d_tidy_log_trigger_third <- d_tidy_log_main %>% filter(region == "trigger_RT_third_chunk")
+model_trigger_third <- brm(
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  data = d_tidy_log_trigger_third,
+  iter = 3000,
+  cores = 4
+)
+summary(model_trigger_third)
+
+# model 5: continuation anaphora RT ("the others / the rest")
+d_tidy_log_anaphora <- d_tidy_log_main %>% filter(region == "continuation_RT_anaphora")
 model_anaphora <- brm(
-  continuation_RT_anaphora_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
-  data = d_tidy_log,
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  data = d_tidy_log_anaphora,
   iter = 3000,
   cores = 4
 )
 summary(model_anaphora)
+
+# model 6
+d_tidy_log_predicate <- d_tidy_log_main %>% filter(region == "continuation_RT_predicate")
+model_predicate <- brm(
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  data = d_tidy_log_predicate,
+  iter = 3000,
+  cores = 4
+)
+summary(model_predicate)
+
+# model 7
+d_tidy_log_clause_boundary <- d_tidy_log_main %>% filter(region == "continuation_RT_clause_boundary")
+model_clause_boundary <- brm(
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  data = d_tidy_log_clause_boundary,
+  iter = 3000,
+  cores = 4
+)
+summary(model_clause_boundary)
+
+# model 8
+d_tidy_log_continuation_fourth <- d_tidy_log_main %>% filter(region == "continuation_RT_fourth_chunk")
+model_continuation_fourth <- brm(
+  critical_RTs_log ~ knowledge * trigger_type + (1 + knowledge * trigger_type | submission_id) + (1 | ID),
+  data = d_tidy_log_continuation_fourth,
+  iter = 3000,
+  cores = 4
+)
+summary(model_continuation_fourth)
+
 ```
